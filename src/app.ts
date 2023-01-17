@@ -37,7 +37,7 @@ const connection = async (): Promise<void> => {
   let dbCon: boolean = false
   if (!dbCon) {
     try {
-      await mongoose.connect('mongodb://user:user@db:27017/finalProject')
+      await mongoose.connect('mongodb+srv://root:root@finalproject.zljlt0a.mongodb.net/?retryWrites=true&w=majority')
       dbCon = true
       console.log('Database available!!!')
     } catch (err) {
@@ -52,6 +52,7 @@ const start = async () => {
   try {
     await connection()
     await app.listen(5000, '0.0.0.0')
+    console.log('Server listening')
   } catch (err) {
     console.log(err);
   }
