@@ -19,6 +19,7 @@ const userController = {
   createClients: async (req: Request, res: Response, next: NextFunction) => {
     try {
       await userService.create(req.body)
+      res.json('Client created')
     } catch (err) {
       next(err)
     }

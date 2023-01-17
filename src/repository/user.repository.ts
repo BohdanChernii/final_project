@@ -11,7 +11,7 @@ type ReqQuery = {
 
 
   const userRepository = async (query:ReqQuery ) => {
-    const {limit, page} = query
+    const {limit=1, page=1} = query
     let findObj = {}
     const [clients, count] = await Promise.all([
       await User.find(findObj).limit(limit).skip((+page - 1) * limit),

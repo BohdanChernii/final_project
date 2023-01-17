@@ -5,14 +5,16 @@ interface IClient extends mongoose.Document {
   surname: string
   phone: string
   age: number
+  email: string
   course: string
   course_format: string
+  course_type: string
   status: string
   sum: number | null
-  alreadyPaid: number | null
-  group: null | string
+  already_paid: number | null
   created_at: string
-  manager: string | null
+  msg: string | null
+  utm: string
   _v?: string
 }
 
@@ -20,13 +22,16 @@ const clientSchema = new Schema({
     name: {type: String, trim: true, require: true},
     surname: {type: String, trim: true, require: true},
     phone: {type: String, trim: true, require: true},
+    email: {type: String, trim: true,require: true},
     course: {type: String, trim: true, require: true},
+    course_format: {type: String, trim: true, require: true},
+    course_type: {type: String, trim: true, require: true},
     status: {type: String, trim: true, require: true},
     sum: {type: String, trim: true, default: null, require: true},
-    alreadyPaid: {type: String, trim: true, default: null, require: true},
-    group: {type: String, trim: true, default: null, require: true},
+    already_paid: {type: String, trim: true, default: null, require: true},
     created_at: {type: String, trim: true, require: true},
-    manager: {type: String, trim: true, default: null, require: true},
+    msg: {type: String, trim: true, default: null, require: true},
+  utm:{type: String, trim: true, default: null, require: true},
   }, {
     timestamps: true
   }
