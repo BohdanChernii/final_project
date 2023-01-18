@@ -1,10 +1,14 @@
-import express from 'express'
+import fs from 'fs'
+import express, {Application} from 'express'
 import {Request, Response, NextFunction} from 'express'
-
-import mongoose from 'mongoose'
-
 // @ts-ignore
-import {router as clientRouter} from './router/user.router.ts'
+import swaggerUI from 'swagger-ui-express'
+import mongoose from 'mongoose'
+// @ts-ignore
+import {router as clientRouter} from './routers/user.router.ts'
+// @ts-ignore
+const swaggerJson = fs.readFileSync('src/swagger.json', 'utf-8')
+
 
 interface Error {
   status: number
@@ -15,14 +19,20 @@ interface Error {
 
 mongoose.set('strictQuery', true);
 
-const app = express()
+const app: Application = express()
 
 app.use(express.json())
+
 app.use(express.urlencoded({extended: true}))
 
-app.use('/clients', clientRouter)
 
-app.get('/', (req: Request, res, next) => {
+app.use('/clients', clientRouter)
+// @ts-ignore
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJson));
+
+// app.UseSwaggerUI(c => { c.SwaggerEndpoint("./swagger.json", "MyServiceAPI"); });
+
+app.get('/', (req: Request, res: Response, next: NextFunction) => {
   res.json('Welcome to platform')
 })
 

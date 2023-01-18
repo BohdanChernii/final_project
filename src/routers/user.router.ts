@@ -1,6 +1,6 @@
 import express from "express";
 // @ts-ignore
-import userController from '../controller/user.controller.ts'
+import userController from '../controllers/user.controller.ts'
 
 const router = express.Router()
 
