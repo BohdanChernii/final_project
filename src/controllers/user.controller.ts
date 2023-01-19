@@ -1,4 +1,5 @@
-import userService from "../service/user.service";
+// @ts-ignore
+import userService from "../service/user.service.ts";
 import {Request, Response, NextFunction} from "express";
 
 const userController = {

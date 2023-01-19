@@ -1,16 +1,19 @@
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-import ApiError from "../error/ApiError";
-import configs from "../config";
-import tokenTypeEnum from "../enum/token.enum";
+// @ts-ignore
+import ApiError from "../error/ApiError.ts";
+// @ts-ignore
+import configs from "../config/index.ts";
+// @ts-ignore
+import tokenTypeEnum from "../enum/token.enum.ts";
 
 
 const authService = {
 
   hashPassword: (password: string) => bcrypt.hash(password, 10),
 
-  comparePasswords: async (hashPassword: string, password: string): Promise<void> => {
-    const isPasswordSame = bcrypt.compare(password, hashPassword)
+  comparePasswords: async (hashPassword: Promise<string>, password: string): Promise<void> => {
+    const isPasswordSame = await bcrypt.compare(password, await hashPassword)
     if (!isPasswordSame) {
       throw new ApiError('Wrong email or password!!', 400)
     }

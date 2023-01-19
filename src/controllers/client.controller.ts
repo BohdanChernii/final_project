@@ -5,13 +5,19 @@ import clientService from "../service/client.service.ts";
 import userRepository, {ReqQuery} from "../repository/user.repository.ts";
 
 import {Request, Response, NextFunction} from 'express'
+// @ts-ignore
+import configs from "../config/index.ts";
 
 const clientController = {
   getAllClients: async (req: Request<{}, {}, {}, ReqQuery>, res: Response, next: NextFunction) => {
     try {
-      const data = await userRepository(req.query)
-      // const client = normalizeMany(data.clients)
-      res.status(200).json(data)
+      if (configs.accessToken) {
+        configs.accessToken = ''
+        const data = await userRepository(req.query)
+        // const client = normalizeMany(data.clients)
+        res.status(200).json(data)
+      }
+      res.status(400).json('Please Auth')
     } catch (err) {
       next(err)
     }
