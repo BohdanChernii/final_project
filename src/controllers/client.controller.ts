@@ -12,6 +12,7 @@ const clientController = {
   getAllClients: async (req: Request<{}, {}, {}, ReqQuery>, res: Response, next: NextFunction) => {
     try {
       if (configs.accessToken) {
+        req.headers.authorization = configs.accessToken
         configs.accessToken = ''
         const data = await userRepository(req.query)
         // const client = normalizeMany(data.clients)
