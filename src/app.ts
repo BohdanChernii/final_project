@@ -1,13 +1,15 @@
-import fs from 'fs'
+// import fs from 'fs'
 import express, {Application} from 'express'
 import {Request, Response, NextFunction} from 'express'
-// @ts-ignore
+
 import swaggerUI from 'swagger-ui-express'
+// @ts-ignore
+import {swaggerDocument} from "./swagger.ts";
 import mongoose from 'mongoose'
 // @ts-ignore
 import {router as clientRouter} from './routers/user.router.ts'
 // @ts-ignore
-const swaggerJson = fs.readFileSync('src/swagger.json', 'utf-8')
+// const swaggerJson = fs.readFileSync('src/swagger.json', 'utf-8')
 
 
 interface Error {
@@ -28,7 +30,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/clients', clientRouter)
 // @ts-ignore
-app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerJson));
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // app.UseSwaggerUI(c => { c.SwaggerEndpoint("./swagger.json", "MyServiceAPI"); });
 
