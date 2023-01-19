@@ -1,5 +1,5 @@
 // @ts-ignore
-import User from '../database/User.ts'
+import User from '../database/Client.ts'
 // import {RequestHandler} from "express";
 // type Params = {};
 // type ResBody = {};

@@ -1,13 +1,20 @@
-
 // @ts-ignore
-import Client, {IClient} from '../database/User.ts'
+import User, {IUser} from '../database/User.ts'
 
 const userService = {
+
   findByParams: async (filter = {}) => {
-    return Client.find(filter)
+    return User.find(filter)
   },
-  create: async (clientInfo: IClient) => {
-    return Client.create(clientInfo)
+
+  findOneById: async (userId:string) => {
+    return User.findById(userId)
+  },
+
+  create: async (userInfo: IUser) => {
+    return User.create(userInfo)
   }
+
 }
+
 export default userService

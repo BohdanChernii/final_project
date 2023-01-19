@@ -1,4 +1,3 @@
-// import fs from 'fs'
 import express, {Application} from 'express'
 import {Request, Response, NextFunction} from 'express'
 
@@ -7,9 +6,8 @@ import swaggerUI from 'swagger-ui-express'
 import {swaggerDocument} from "./swagger.ts";
 import mongoose from 'mongoose'
 // @ts-ignore
-import {router as clientRouter} from './routers/user.router.ts'
-// @ts-ignore
-// const swaggerJson = fs.readFileSync('src/swagger.json', 'utf-8')
+import {router as clientRouter} from './routers/client.router.ts'
+
 
 
 interface Error {
@@ -50,7 +48,7 @@ const connection = async (): Promise<void> => {
   if (!dbCon) {
     try {
       await mongoose.connect('mongodb+srv://admin:amin@finalproject.5rkpwyv.mongodb.net/?retryWrites=true&w=majority')
-      // await mongoose.connect('mongodb://localhost:27017/clients')
+      await mongoose.connect('mongodb://localhost:27017/clients')
       dbCon = true
       console.log('Database available!!!')
     } catch (err) {

@@ -1,28 +1,34 @@
-// import normalizeMany from "../presenter/user.presenter";
-// @ts-ignore
-import userService from "../service/user.service.ts";
-// @ts-ignore
-import userRepository, {ReqQuery} from "../repository/user.repository.ts";
-
-import {Request, Response, NextFunction} from 'express'
+import userService from "../service/user.service";
+import {Request, Response, NextFunction} from "express";
 
 const userController = {
-  getAllClients: async (req: Request<{}, {}, {}, ReqQuery>, res: Response, next: NextFunction) => {
+  getAllUsers: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-      const data = await userRepository(req.query)
-      // const client = normalizeMany(data.clients)
-      res.status(200).json(data)
+      const users = await userService.findByParams()
+      res.json(users).status(200)
     } catch (err) {
       next(err)
     }
   },
-  createClients: async (req: Request, res: Response, next: NextFunction) => {
+
+  getOneUser: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      const {userId} = req.params
+      const user = await userService.findOneById(userId)
+      res.json(user).status(200)
+    } catch (err) {
+      next(err)
+    }
+  },
+
+  createUser: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await userService.create(req.body)
-      res.json('Client created')
+      res.json('User created').status(201)
     } catch (err) {
       next(err)
     }
   }
 }
+
 export default userController
