@@ -11,13 +11,13 @@ import configs from "../config/index.ts";
 const clientController = {
   getAllClients: async (req: Request<{}, {}, {}, ReqQuery>, res: Response, next: NextFunction) => {
     try {
-      if (configs.accessToken) {
-        req.headers.authorization = configs.accessToken
-        configs.accessToken = ''
+      req.headers.authorization = configs.accessToken
+      if(req.headers.authorization){
         const data = await userRepository(req.query)
         // const client = normalizeMany(data.clients)
         res.status(200).json(data)
       }
+
       res.status(400).json('Please Auth')
     } catch (err) {
       next(err)
