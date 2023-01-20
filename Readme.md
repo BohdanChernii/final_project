@@ -2,5 +2,11 @@ to run project
 
 npm run watch:server
 
-docs
+
+Docs
 http://localhost:5000/docs
+
+
+Credentials to login
+email:admin@gmail.com
+password:admin

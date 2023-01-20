@@ -23,6 +23,22 @@ export const swaggerDocument = {
         "tags": [
           "Clients"
         ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "example": "1"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "example": "1"
+          },
+        ],
         "responses": {
           "200": {
             "description": "Success response",
