@@ -180,27 +180,5 @@ export const swaggerDocument = {
         },
       }
     },
-    "User": {
-      "properties": {
-        "email": {
-          "type": "string",
-          "example": "admin@gmail.com"
-        },
-        "password": {
-          "type": "string",
-          "example": "admin"
-        }
-      }
-    },
-    "Tokens": {
-      "accessToken": {
-        "type": "string",
-        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzljMTZiOTU5MzBiYTgyYjQ1ZjRlMSIsImlhdCI6MTY3NDIyOTU1NywiZXhwIjoxNjc0MzE1OTU3fQ.cNQkMLqu7kuHisi192w97E7qsv3dxtFI5rqPN_GlJ5Q"
-      },
-      "refreshToken": {
-        "type": "string",
-        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzljMTZiOTU5MzBiYTgyYjQ1ZjRlMSIsImlhdCI6MTY3NDIyOTU1NywiZXhwIjoxNjc0ODM0MzU3fQ.EYgbLKSunaYUPMUby1FTpxCqItAPh69Zp4XqRw_kBlw"
-      }
-    }
   }
 }
