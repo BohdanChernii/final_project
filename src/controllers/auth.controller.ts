@@ -28,12 +28,11 @@ const authController = {
       await OAuth.create({...tokenPair, _user_id: user._id})
       configs.accessToken = tokenPair.accessToken
 
-      const validate = authValidation.loginValidator.validate(req.body.email)
-      if (validate.error) {
-        throw new ApiError(validate.error.message, 400)
-      }
+      // const validate = authValidation.loginValidator.validate(req.body.email)
+      // if (validate.error) {
+      //   throw new ApiError(validate.error.message, 400)
+      // }
       res.json({
-        user,
         ...tokenPair
       })
 

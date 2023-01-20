@@ -39,9 +39,6 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 // app.UseSwaggerUI(c => { c.SwaggerEndpoint("./swagger.json", "MyServiceAPI"); });
 
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-  res.json('Welcome to platform')
-})
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(err.status || 500).json({
@@ -54,8 +51,9 @@ const connection = async (): Promise<void> => {
   let dbCon: boolean = false
   if (!dbCon) {
     try {
-      await mongoose.connect('mongodb+srv://admin:amin@finalproject.5rkpwyv.mongodb.net/?retryWrites=true&w=majority')
-      // await mongoose.connect('mongodb://localhost:27017/clients')
+      // await mongoose.connect('mongodb+srv://admin:amin@finalproject.5rkpwyv.mongodb.net/?retryWrites=true&w=majority')
+      //localy
+      await mongoose.connect('mongodb://localhost:27017/clients')
       dbCon = true
       console.log('Database available!!!')
     } catch (err) {
@@ -70,7 +68,7 @@ const start = async () => {
   try {
     await connection()
     await app.listen(5000, '0.0.0.0')
-    console.log('Server listening')
+    console.log('listening  http://localhost:5000' )
   } catch (err) {
     console.log(err);
   }

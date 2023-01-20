@@ -18,10 +18,10 @@ export const swaggerDocument = {
   "paths": {
     "/clients": {
       "get": {
-        "description": "Get all users",
-        "operationId": "get-all-users",
+        "description": "Get all clients",
+        "operationId": "get-all-clients",
         "tags": [
-          "Users"
+          "Clients"
         ],
         "responses": {
           "200": {
@@ -45,6 +45,63 @@ export const swaggerDocument = {
         }
       }
     },
+    "/auth/login": {
+      "post": {
+        "description": "Authorize user",
+        "operationId": "authorize",
+        "tags": [
+          "Authorize"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": "email",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "admin@gmail.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "admin"
+                  }
+                }
+              }
+            }
+          },
+        },
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "type": "object",
+              "required": "email",
+              "properties": {
+                "accessToken": {
+                  "type": "string",
+                },
+                "refreshToken": {
+                  "type": "string",
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Wrong email or password",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ApiError"
+              }
+            }
+          }
+        }
+      }
+    },
+
   },
   "definitions": {
     "ApiError": {
@@ -101,26 +158,48 @@ export const swaggerDocument = {
           "type": "string",
           "example": null
         },
-        "created_at":{
-          "type":"string",
-          "example":"2021-08-04T18:18:23Z"
+        "created_at": {
+          "type": "string",
+          "example": "2021-08-04T18:18:23Z"
         },
-        "msg":{
-          "type":"string",
-          "example":null
+        "msg": {
+          "type": "string",
+          "example": null
         },
-        "utm":{
-          "type":"string",
-          "example":"event"
+        "utm": {
+          "type": "string",
+          "example": "event"
         },
-        "createdAt":{
-          "type":"string",
-          "example":"2023-01-17T20:34:48.856Z"
-        },
-        "updatedAt":{
-          "type":"string",
+        "createdAt": {
+          "type": "string",
           "example": "2023-01-17T20:34:48.856Z"
         },
+        "updatedAt": {
+          "type": "string",
+          "example": "2023-01-17T20:34:48.856Z"
+        },
+      }
+    },
+    "User": {
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "admin@gmail.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "admin"
+        }
+      }
+    },
+    "Tokens": {
+      "accessToken": {
+        "type": "string",
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzljMTZiOTU5MzBiYTgyYjQ1ZjRlMSIsImlhdCI6MTY3NDIyOTU1NywiZXhwIjoxNjc0MzE1OTU3fQ.cNQkMLqu7kuHisi192w97E7qsv3dxtFI5rqPN_GlJ5Q"
+      },
+      "refreshToken": {
+        "type": "string",
+        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzYzljMTZiOTU5MzBiYTgyYjQ1ZjRlMSIsImlhdCI6MTY3NDIyOTU1NywiZXhwIjoxNjc0ODM0MzU3fQ.EYgbLKSunaYUPMUby1FTpxCqItAPh69Zp4XqRw_kBlw"
       }
     }
   }
