@@ -27,17 +27,68 @@ export const swaggerDocument = {
           {
             "name": "page",
             "in": "query",
-            "required": true,
+            "required": false,
             "type": "string",
             "example": "1"
           },
           {
             "name": "limit",
             "in": "query",
-            "required": true,
+            "required": false,
             "type": "string",
-            "example": "1"
+            "example": "10"
           },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "type": "string",
+
+          },
+          {
+            "name": "surname",
+            "in": "query",
+            "required": false,
+            "type": "string",
+
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "course",
+            "in": "query",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "course_format",
+            "in": "query",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "course_type",
+            "in": "query",
+            "required": false,
+            "type": "string",
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "string",
+          },
+
         ],
         "responses": {
           "200": {

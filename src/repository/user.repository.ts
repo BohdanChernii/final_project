@@ -14,7 +14,6 @@ const userRepository = async (query: ReqQuery) => {
     await User.count(findObj)
 
   ])
-  console.log(User)
   return {
     clients,
     page: +page,

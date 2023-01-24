@@ -10,34 +10,19 @@ import configs from "../config/index.ts";
 // @ts-ignore
 import client, {IClient} from "../database/Client.ts";
 
+interface IRequest extends Request {
+  clients: IClient[]
+}
+
 
 const clientController = {
-  getAllClients: async (req: Request<{}, {}, {}, ReqQuery>, res: Response, next: NextFunction) => {
+  getAllClients: async (req: Request<{}, {}, {}, ReqQuery> | IRequest, res: Response, next: NextFunction) => {
     try {
+      // @ts-ignore
+      const {clients} = req
       req.headers.authorization = configs.accessToken
-      if(req.headers.authorization){
-      const data = await userRepository(req.query)
-      const filters = req.query
-      if (!Object.keys(filters).includes('page' || 'limit')) {
-        const filteredClients: IClient[] = JSON.parse(JSON.stringify(data.clients)).filter((client: IClient, index: number, arr: IClient[]) => {
-          let isValid: boolean = true
-
-          for (let key in filters) {
-            if (filters[key] === '') {
-              res.json(arr.sort((a, b) => {
-                return (a[key] < b[key]) ? -1 : (a[key] > b[key]) ? 1 : 0
-              }).reverse())
-            }
-            console.log(key, client[key], filters[key],)
-            isValid = isValid && client[key].includes(filters[key]);
-          }
-
-          return isValid
-        })
-        res.json(filteredClients)
-
-      }
-        res.status(200).json(data)
+      if (req.headers.authorization) {
+        res.status(200).json(clients)
       }
       // const client = normalizeMany(data.clients)
 
