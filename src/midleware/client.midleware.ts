@@ -23,18 +23,22 @@ const clientMidleware = {
   ordering: async (req: Request<{}, {}, {}, ReqQuery> | IRequest, res: Response, next: NextFunction) => {
     try {
       const data = await clientMidleware.CLIENTS(req, res, next)
+      let sorted
       if (req.query.order) {
+        console.log(req.query.order);
+
+        sorted = data.sort((a:any, b:any) => a[req.query.order] !== b[req.query.order] ? a[req.query.order] > b[req.query.order] ? -1 : 1 : 0);
         // @ts-ignore
-        req.clients = data.sort((a: { [x: string]: number; }, b: { [x: string]: number; }) => {
-          return (a[req.query.order] < b[req.query.order]) ? -1 : (a[req.query.order] > b[req.query.order]) ? 1 : 0
-        })
+        req.clients = sorted
       }
 
-      if(req.query.order.includes('-')){
+
+      if (req.query.order.includes('-')) {
+        console.log(req.query.order);
+
+        sorted = data.sort((a:any, b:any) => a[req.query.order] !== b[req.query.order] ? a[req.query.order] < b[req.query.order] ? -1 : 1 : 0);
         // @ts-ignore
-        req.clients = data.sort((a: { [x: string]: number; }, b: { [x: string]: number; }) => {
-          return (a[req.query.order] > b[req.query.order]) ? -1 : (a[req.query.order] < b[req.query.order]) ? 1 : 0
-        })
+        req.clients = sorted
       }
 
       next()
@@ -48,10 +52,13 @@ const clientMidleware = {
       const filters = req.query
 
       const filtered = data.filter((client: IClient) => {
+        const clientKeys: string[] = Object.keys(client)
+        console.log(clientKeys);
         let isValid: boolean = true
 
         for (let key in filters) {
-          if (Object.keys(client).includes(key)) {
+          // @ts-ignore
+          if (clientKeys.includes(key) && key !== 'page' && key !== 'order') {
             console.log(key, client[key], filters[key],)
             isValid = isValid && client[key].includes(filters[key]);
           }

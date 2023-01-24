@@ -20,14 +20,14 @@ const clientController = {
     try {
       // @ts-ignore
       const {clients} = req
-      req.headers.authorization = configs.accessToken
-      if (req.headers.authorization) {
+      // req.headers.authorization = configs.accessToken
+      // if (req.headers.authorization) {
         res.status(200).json(clients)
-      }
+      // }
       // const client = normalizeMany(data.clients)
 
 
-      res.status(400).json('Please Auth')
+      // res.status(400).json('Please Auth')
     } catch (err) {
       next(err)
     }
