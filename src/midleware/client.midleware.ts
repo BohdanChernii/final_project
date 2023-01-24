@@ -22,11 +22,18 @@ const clientMidleware = {
 
   ordering: async (req: Request<{}, {}, {}, ReqQuery> | IRequest, res: Response, next: NextFunction) => {
     try {
+      const data = await clientMidleware.CLIENTS(req, res, next)
       if (req.query.order) {
-        const data = await clientMidleware.CLIENTS(req, res, next)
         // @ts-ignore
         req.clients = data.sort((a: { [x: string]: number; }, b: { [x: string]: number; }) => {
           return (a[req.query.order] < b[req.query.order]) ? -1 : (a[req.query.order] > b[req.query.order]) ? 1 : 0
+        })
+      }
+
+      if(req.query.order.includes('-')){
+        // @ts-ignore
+        req.clients = data.sort((a: { [x: string]: number; }, b: { [x: string]: number; }) => {
+          return (a[req.query.order] > b[req.query.order]) ? -1 : (a[req.query.order] < b[req.query.order]) ? 1 : 0
         })
       }
 
