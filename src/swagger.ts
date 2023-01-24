@@ -27,7 +27,7 @@ export const swaggerDocument = {
           {
             "name": "page",
             "in": "query",
-            "required": false,
+            "required": true,
             "type": "string",
             "example": "1"
           },
