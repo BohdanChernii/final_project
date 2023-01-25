@@ -4,13 +4,17 @@
   "main": "./srs/app.ts",
   "scripts": {
     "start": "rimraf dist && tsc-watch --onSuccess",
-    "watch:server": "nodemon ./src/app.ts"
+    "watch:server": "nodemon src/app.ts"
   },
   "author": "Bohdan Tcherniy",
   "license": "ISC",
   "description": "",
   "type": "module",
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.6",
+    "@types/react-router": "^5.1.20",
     "@types/request": "^2.48.8",
     "bcrypt": "^5.1.0",
     "express": "^4.18.2",
@@ -18,6 +22,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.3",
     "node-fetch": "^3.3.0",
+    "react-router": "^6.7.0",
+    "react-router-dom": "^6.7.0",
     "swagger": "^0.7.5",
     "swagger-ui-express": "^4.6.0"
   },

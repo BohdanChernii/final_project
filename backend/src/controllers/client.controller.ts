@@ -6,7 +6,7 @@ import userRepository, {ReqQuery} from "../repository/user.repository.ts";
 
 import {Request, Response, NextFunction} from 'express'
 // @ts-ignore
-import configs from "../config/index.ts";
+import configs from "../config";
 // @ts-ignore
 import client, {IClient} from "../database/Client.ts";
 

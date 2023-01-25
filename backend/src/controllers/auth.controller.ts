@@ -6,7 +6,7 @@ import User, {IUser} from "../database/User.ts"
 // @ts-ignore
 import OAuth from "../database/OAuth.ts";
 // @ts-ignore
-import configs from "../config/index.ts";
+import configs from "../config";
 
 // @ts-ignore
 import authValidation from '../validator/auth.validator.ts'

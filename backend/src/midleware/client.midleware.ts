@@ -4,7 +4,7 @@ import userRepository, {ReqQuery} from "../repository/user.repository.ts";
 // @ts-ignore
 import {IClient} from "../database/Client.ts";
 // @ts-ignore
-import configs from "../config/index.ts";
+import configs from "../config";
 
 interface IRequest extends Request {
   clients: IClient[]
