@@ -27,7 +27,7 @@ const clientController = {
       // const client = normalizeMany(data.clients)
 
 
-      // res.status(400).json('Please Auth')
+      // res.status(400).json('Please Index')
     } catch (err) {
       next(err)
     }

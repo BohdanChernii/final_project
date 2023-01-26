@@ -1,0 +1,35 @@
+.paid {
+  &__item {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 20px;
+    color: white;
+    font-weight: bold;
+    background: #3f51b5;
+
+    .logo {
+      color: white;
+      text-decoration: none;
+    }
+
+    .authBar {
+      &__btn {
+        width: 67px;
+        height: 25px;
+        margin: auto 0;
+        background: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 12px;
+        box-shadow: 0 3px 1px -2px #0003, 0 2px 2px #00000024, 0 1px 5px #0000001f;
+        cursor: pointer;
+      }
+    }
+  }
+  &__footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+  }
+}
