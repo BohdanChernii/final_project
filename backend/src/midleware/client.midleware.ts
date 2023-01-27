@@ -25,7 +25,11 @@ const clientMidleware = {
       const data = await clientMidleware.CLIENTS(req, res, next)
       let sorted
       if (req.query.order) {
-        console.log(req.query.order);
+        // @ts-ignore
+   if(req.clients){
+     // @ts-ignore
+     sorted = req.clients((a:any, b:any) => a[req.query.order] !== b[req.query.order] ? a[req.query.order] > b[req.query.order] ? -1 : 1 : 0);
+   }
 
         sorted = data.sort((a:any, b:any) => a[req.query.order] !== b[req.query.order] ? a[req.query.order] > b[req.query.order] ? -1 : 1 : 0);
         // @ts-ignore
@@ -34,7 +38,12 @@ const clientMidleware = {
 
 
       if (req.query.order.includes('-')) {
-        console.log(req.query.order);
+        // @ts-ignore
+        if(req.clients){
+          // @ts-ignore
+          sorted = req.clients((a:any, b:any) => a[req.query.order] !== b[req.query.order] ? a[req.query.order] > b[req.query.order] ? -1 : 1 : 0);
+        }
+
 
         sorted = data.sort((a:any, b:any) => a[req.query.order] !== b[req.query.order] ? a[req.query.order] < b[req.query.order] ? -1 : 1 : 0);
         // @ts-ignore
@@ -51,7 +60,7 @@ const clientMidleware = {
       const data = await clientMidleware.CLIENTS(req, res, next)
       const filters = req.query
 
-      const filtered = data.filter((client: IClient) => {
+      let filtered = data.filter((client: IClient) => {
         const clientKeys: string[] = Object.keys(client)
         console.log(clientKeys);
         let isValid: boolean = true
@@ -66,6 +75,25 @@ const clientMidleware = {
         }
         return isValid
       })
+      // @ts-ignore
+      if(req.clients){
+        // @ts-ignore
+        filtered = req.clients.filter((client: IClient) => {
+          const clientKeys: string[] = Object.keys(client)
+          console.log(clientKeys);
+          let isValid: boolean = true
+
+          for (let key in filters) {
+            // @ts-ignore
+            if (clientKeys.includes(key) && key !== 'page' && key !== 'order') {
+              console.log(key, client[key], filters[key],)
+              isValid = isValid && client[key].includes(filters[key]);
+            }
+
+          }
+          return isValid
+        })
+      }
 
       // @ts-ignore
       req.clients = filtered
