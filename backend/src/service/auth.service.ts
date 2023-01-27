@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 // @ts-ignore
 import ApiError from "../error/ApiError.ts";
 // @ts-ignore
-import configs from "../config";
+import configs from "../config/index.ts";
 // @ts-ignore
 import tokenTypeEnum from "../enum/token.enum.ts";
 

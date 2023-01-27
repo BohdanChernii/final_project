@@ -2,7 +2,7 @@ to run backend
 
 cd backend
 
-npm run watch:backend
+npm run watch:server
 
 to run frontend
 
