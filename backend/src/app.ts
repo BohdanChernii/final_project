@@ -51,9 +51,9 @@ const connection = async (): Promise<void> => {
   let dbCon: boolean = false
   if (!dbCon) {
     try {
-      await mongoose.connect('mongodb+srv://admin:amin@finalproject.5rkpwyv.mongodb.net/?retryWrites=true&w=majority')
-      //locally
-      // await mongoose.connect('mongodb://localhost:27017/clients')
+      // await mongoose.connect('mongodb+srv://admin:amin@finalproject.5rkpwyv.mongodb.net/?retryWrites=true&w=majority')
+      // locally
+      await mongoose.connect('mongodb://localhost:27017/clients')
       dbCon = true
       console.log('Database available!!!')
     } catch (err) {
