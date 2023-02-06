@@ -6,13 +6,7 @@ import swaggerUI from 'swagger-ui-express'
 import {swaggerDocument} from "./swagger.ts";
 import mongoose from 'mongoose'
 // @ts-ignore
-import {router as userRouter} from './routers/user.router.ts'
-
-// @ts-ignore
-import {router as authRouter} from './routers/auth.router.ts'
-
-// @ts-ignore
-import {router as clientRouter} from './routers/client.router.ts'
+import {router as rootRouter} from './routers/root.router.ts'
 
 interface Error {
   status: number
@@ -29,11 +23,8 @@ app.use(express.json())
 
 app.use(express.urlencoded({extended: true}))
 
-app.use('/users', userRouter)
+app.use('/', rootRouter)
 
-app.use('/clients', clientRouter)
-
-app.use('/auth', authRouter)
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
