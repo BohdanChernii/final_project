@@ -6,13 +6,13 @@ import swaggerUI from 'swagger-ui-express'
 import {swaggerDocument} from "./swagger.ts";
 import mongoose from 'mongoose'
 // @ts-ignore
-import {router as clientRouter} from './routers/client.router.ts'
-// @ts-ignore
-import {router as authRouter} from './routers/auth.router.ts'
-// @ts-ignore
 import {router as userRouter} from './routers/user.router.ts'
 
+// @ts-ignore
+import {router as authRouter} from './routers/auth.router.ts'
 
+// @ts-ignore
+import {router as clientRouter} from './routers/client.router.ts'
 
 interface Error {
   status: number
@@ -36,9 +36,6 @@ app.use('/clients', clientRouter)
 app.use('/auth', authRouter)
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
-
-// app.UseSwaggerUI(c => { c.SwaggerEndpoint("./swagger.json", "MyServiceAPI"); });
-
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(err.status || 500).json({
@@ -68,7 +65,7 @@ const start = async () => {
   try {
     await connection()
     await app.listen(5000, '0.0.0.0')
-    console.log('listening  http://localhost:5000' )
+    console.log('listening  http://localhost:5000')
   } catch (err) {
     console.log(err);
   }

@@ -1,8 +1,10 @@
 // @ts-ignore
 import User from '../database/Client.ts'
+
 type ReqQuery = {
-  limit: number
-  page: number
+  limit?: number
+  page?: number
+  // order?: string
 }
 
 

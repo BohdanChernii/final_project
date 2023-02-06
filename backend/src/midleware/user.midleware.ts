@@ -1,10 +1,11 @@
 import {Request, Response, NextFunction} from 'express'
-// @ts-ignore
+//@ts-ignore
 import User, {IUser} from "../database/User.ts";
 // @ts-ignore
 import ApiError from "../error/ApiError.ts";
+import {ReqQuery} from "../repository/user.repository";
 
-interface IRequest extends Request {
+interface IRequest extends Request<{}, {}, {}, ReqQuery> {
   user?: IUser
 }
 
@@ -12,6 +13,7 @@ const userMidleware = {
   getUserDynamically: (fieldName: string, from = "body", dbField = fieldName) => async (
     req: IRequest, res: Response, next: NextFunction) => {
     try {
+
       // @ts-ignore
       const fieldToSearch = req[from][dbField]
       const user = await User.findOne({[dbField]: fieldToSearch})
@@ -27,5 +29,5 @@ const userMidleware = {
     }
   }
 }
-
+//
 export default userMidleware
