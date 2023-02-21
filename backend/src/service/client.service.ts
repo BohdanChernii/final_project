@@ -1,4 +1,3 @@
-
 // @ts-ignore
 import Client, {IClient} from '../database/Client.ts'
 

@@ -1,5 +1,7 @@
 import express, {Application} from 'express'
 import {Request, Response, NextFunction} from 'express'
+// @ts-ignore
+import cors from 'cors'
 
 import swaggerUI from 'swagger-ui-express'
 // @ts-ignore
@@ -23,8 +25,10 @@ app.use(express.json())
 
 app.use(express.urlencoded({extended: true}))
 
-app.use('/', rootRouter)
+// @ts-ignore
+app.disable(cors())
 
+app.use('/', rootRouter)
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
